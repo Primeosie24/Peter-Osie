@@ -1,0 +1,10 @@
+<!-- src/app/question-details/question-details.component.html -->
+<h2>{{ question.title }}</h2>
+<p>{{ question.description }}</p>
+
+<h3>Answers</h3>
+<ul>
+  <li *ngFor="let answer of question.answers">{{ answer.content }}</li>
+</ul>
+
+<app-answer-form [questionId]="question.id"></app-answer-form>
