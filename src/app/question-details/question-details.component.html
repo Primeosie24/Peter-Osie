@@ -1,10 +1,19 @@
 <!-- src/app/question-details/question-details.component.html -->
-<h2>{{ question.title }}</h2>
-<p>{{ question.description }}</p>
-
-<h3>Answers</h3>
-<ul>
-  <li *ngFor="let answer of question.answers">{{ answer.content }}</li>
-</ul>
-
-<app-answer-form [questionId]="question.id"></app-answer-form>
+<div *ngIf="question">
+  <h2>{{ question.title }}</h2>
+  <p>{{ question.description }}</p>
+  <h3>Answers</h3>
+  <ul>
+    <li *ngFor="let answer of question.answers">
+      <label>
+        <input type="radio" [name]="'answer_' + question.id" [value]="answer.id"
+          (change)="onAnswerSelected(answer.id)" />
+        {{ answer.content }}
+      </label>
+    </li>
+  </ul>
+  <button (click)="submitAnswer()">Submit Answer</button>
+</div>
+<div *ngIf="!question">
+  <p>Question not found.</p>
+</div>

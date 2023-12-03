@@ -5,4 +5,6 @@ export interface Question {
   title: string;
   description: string;
   answers: Answer[];
+  correctAnswerId: any; // Add correctAnswerId property
+
 }
