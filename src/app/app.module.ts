@@ -9,12 +9,8 @@ import { QuestionDetailsComponent } from './question-details/question-details.co
 import { AnswerFormComponent } from './answer-form/answer-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
-
-const routes: Routes = [
-  // ... other routes ...
-  { path: 'question/:id', component: QuestionDetailsComponent },
-];
 
 @NgModule({
   declarations: [
@@ -27,8 +23,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Add this line
-    [RouterModule.forRoot(routes)],
     MatCardModule,
+    MatButtonModule
 
 
   ],

@@ -1,18 +1,27 @@
 <!-- src/app/question-details/question-details.component.html -->
 <div *ngIf="question">
-  <h2>{{ question.title }}</h2>
-  <p>{{ question.description }}</p>
-  <h3>Answers</h3>
-  <ul>
-    <li *ngFor="let answer of question.answers">
-      <label>
-        <input type="radio" [name]="'answer_' + question.id" [value]="answer.id"
-          (change)="onAnswerSelected(answer.id)" />
-        {{ answer.content }}
-      </label>
-    </li>
-  </ul>
-  <button (click)="submitAnswer()">Submit Answer</button>
+  <mat-card [style.background]="question.cardBackgroundColor">
+    <mat-card-header>
+      <mat-card-title>{{ question.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ question.description }}</p>
+      <h3>Answers</h3>
+      <ul>
+        <li *ngFor="let answer of question.answers">
+          <label>
+            <input type="radio" [name]="'answer_' + question.id" [value]="answer.id"
+              (change)="onAnswerSelected(answer.id)" />
+            {{ answer.content }}
+          </label>
+        </li>
+      </ul>
+      <button mat-button (click)="submitAnswer()">Submit Answer</button>
+
+      <!-- Next Question Button -->
+      <button mat-button (click)="loadNextQuestion()">Next Question</button>
+    </mat-card-content>
+  </mat-card>
 </div>
 <div *ngIf="!question">
   <p>Question not found.</p>

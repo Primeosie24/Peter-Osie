@@ -18,7 +18,8 @@ export class QuestionService {
         { id: 'C', content: 'Matthew' },
         { id: 'D', content: 'Luke' }
       ],
-      correctAnswerId: 'B'
+      correctAnswerId: 'B',
+      cardBackgroundColor: 'Green',
     },
     {
       id: 2,
@@ -30,11 +31,12 @@ export class QuestionService {
         { id: 'C', content: 'Jonah' },
         { id: 'D', content: 'Ezekiel' }
       ],
-      correctAnswerId: 'C'
+      correctAnswerId: 'C',
+      cardBackgroundColor: 'Orange',
     },
     // Add more difficult Bible questions...
     {
-      id: 11,
+      id: 3,
       title: 'What is the shortest verse in the Bible?',
       description: '',
       answers: [
@@ -43,10 +45,11 @@ export class QuestionService {
         { id: 'C', content: 'The Lord is my shepherd' },
         { id: 'D', content: 'In the beginning was the Word' }
       ],
-      correctAnswerId: 'A'
+      correctAnswerId: 'A',
+      cardBackgroundColor: 'Teal',
     },
     {
-      id: 12,
+      id: 4,
       title: 'How many books are in the New Testament?',
       description: '',
       answers: [
@@ -55,7 +58,8 @@ export class QuestionService {
         { id: 'C', content: '29' },
         { id: 'D', content: '33' }
       ],
-      correctAnswerId: 'B'
+      correctAnswerId: 'B',
+      cardBackgroundColor: 'sea-blue',
     },
     // Add more difficult Bible questions...
   ];
@@ -67,7 +71,16 @@ export class QuestionService {
   getQuestionById(id: number): Question | undefined {
     return this.questions.find(question => question.id === id);
   }
-
+  getDefaultQuestion(title: string, description: string): Question {
+    return {
+      id: 0,
+      title,
+      description,
+      answers: [],
+      correctAnswerId: '',
+      cardBackgroundColor: 'purple'
+    };
+  }
   addAnswer(questionId: number, answer: Answer): void {
     const question = this.getQuestionById(questionId);
 
@@ -76,5 +89,16 @@ export class QuestionService {
     } else {
       console.error(`Question with ID ${questionId} not found.`);
     }
+  }
+  getNextQuestion(currentQuestionId: number): Question | undefined {
+    const currentIndex = this.questions.findIndex(question => question.id === currentQuestionId);
+
+    // If the current question is found and not the last one, return the next question
+    if (currentIndex !== -1 && currentIndex < this.questions.length - 1) {
+      return this.questions[currentIndex + 1];
+    }
+
+    // Return undefined if there is no next question
+    return undefined;
   }
 }

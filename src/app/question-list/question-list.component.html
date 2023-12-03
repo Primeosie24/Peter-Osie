@@ -1,11 +1,6 @@
 <!-- src/app/question-list/question-list.component.html -->
 <div *ngFor="let question of questions">
-  <mat-card class="question-card">
-    <mat-card-header>
-      <mat-card-title>{{ question.title }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ question.description }}</p>
-    </mat-card-content>
-  </mat-card>
+  <h2>{{ question.title }}</h2>
+  <p>{{ question.description }}</p>
+  <button [routerLink]="['/question', question.id]">View Details</button>
 </div>
